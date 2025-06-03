@@ -1,21 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Button } from './components/ui/button'
+import "./App.css";
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import Cuestionario from "@/components/aurora/cuestionario";
 
+const App: React.FC = () => {
   return (
-    <>
-      <div className='bg-red-100'> Hola
-      </div>
-  <div className="flex flex-col items-center justify-center min-h-svh">
-        <Button>Click me</Button>
-      </div>
+     <>
+      <Cuestionario/>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
