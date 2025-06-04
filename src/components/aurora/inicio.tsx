@@ -13,6 +13,8 @@ type WelcomeMessageProps = {
 };
 
 const Inicio: React.FC<WelcomeMessageProps> = ({ onClick }) => {
+  console.log("Aca",import.meta.env.VITE_JSONBIN_API_KEY);
+  console.log(import.meta.env.VITE_JSONBIN_COLLECTION_ID);
   return (
       <div className="w-full h-auto flex justify-center items-center font-poppins py-4">
         <Card className="px-10 py-10 lg:w-2/5 h-full flex flex-col justify-between">
