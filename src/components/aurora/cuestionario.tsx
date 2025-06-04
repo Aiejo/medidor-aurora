@@ -3,6 +3,7 @@ import { Card, CardHeader, CardContent, CardTitle } from "../ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import axios from "axios";
 import {
   Form,
   FormControl,
@@ -19,8 +20,6 @@ import { TOTAL_PREGUNTAS, CUESTIONARIO } from "@/data/cuestionario";
 import Inicio from "@/components/aurora/inicio";
 import Resultado from "@/components/aurora/resultado";
 
-import formImage from "@/assets/form-bg-1.png";
-import resultImage from "@/assets/form-bg-2.png";
 
 type FormValues = {
   [name: string]: string;
@@ -33,14 +32,38 @@ const valores: { [key: number]: string } = {
 };
 
 const Cuestionario: React.FC = () => {
-  const [page, setPage] = React.useState(0);
+  const [page, setPage] = React.useState(2);
   const [result, setresult] = React.useState(0);
 
   const form = useForm<FormValues>({
     defaultValues: {},
   });
 
-  const onSubmit = (data: FormValues) => {
+  const sendDataToJSONBin = async (data: FormValues, finalResult:number) => {
+    const datetime = new Date().toISOString();
+
+    const nombreBin = `Respuestas_${datetime}`;
+
+    const body = {...data, 'puntaje':finalResult}
+
+    try {
+      const response = await axios.post("https://api.jsonbin.io/v3/b", body, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Access-Key": import.meta.env.VITE_JSONBIN_API_KEY,
+          "X-Bin-Name": nombreBin,
+          "X-Bin-Private": "true",
+          "X-Collection-Id": import.meta.env.VITE_JSONBIN_COLLECTION_ID,
+        },
+      });
+
+      console.log("Bin creado con ID:", response.data.metadata.id);
+    } catch (error) {
+      console.error("Error al guardar en JSONBin.io:", error);
+    }
+  };
+
+  const onSubmit = async (data: FormValues) => {
     // Calcular el resultado
     let tempResult = 0;
     for (let i = 1; i <= TOTAL_PREGUNTAS; i++) {
@@ -56,18 +79,21 @@ const Cuestionario: React.FC = () => {
         tempResult += 2;
       }
     }
-    setresult(tempResult / (TOTAL_PREGUNTAS * 2));
+    const finalResult = tempResult / (TOTAL_PREGUNTAS * 2)
+    setresult(finalResult);
+    sendDataToJSONBin(data, finalResult);
     setPage(2);
   };
+  const bgImage = page < 2 ? "xl:bg-[url('/images/form-bg-1.png')]" :  "xl:bg-[url('/images/form-bg-2.png')]" ;
+  const bgColor = page < 2 ? "bg-orange-aurora" :  "bg-violet-aurora" ;
   return (
     <div
-      className="flex items-center justify-center w-full h-screen bg-cover bg-center"
-      style={{ backgroundImage: `url(${page < 2 ? formImage : resultImage})` }}
+      className={`flex items-center justify-center w-full h-screen ${bgColor} xl:bg-cover lg:bg-center ${bgImage}`}
     >
       {page === 0 && <Inicio onClick={() => setPage(1)} />}
       {page === 1 && (
         <div className="w-full flex justify-center items-center h-full font-poppins overflow-hidden absolute py-4">
-          <Card className="px-2 py-10 w-2/5 flex flex-col max-h-full overflow-y-auto">
+          <Card className="px-2 py-10 lg:w-2/5 h-full flex flex-col justify-between max-h-full overflow-y-auto">
             <CardHeader>
               <CardTitle className="text-starts text-xl font-bold text-aurora-purple">
                 Formulario de Evaluación

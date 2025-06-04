@@ -5,6 +5,8 @@
 
 @theme inline {
   --color-aurora-purple: #5f2c82;
+  --color-orange-aurora: #F9E7CF;
+  --color-violet-aurora: #8B4A97;
   --font-poppins: 'Poppins', sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

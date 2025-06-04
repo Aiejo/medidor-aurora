@@ -15,12 +15,12 @@ type WelcomeMessageProps = {
 const Inicio: React.FC<WelcomeMessageProps> = ({ onClick }) => {
   return (
       <div className="w-full h-auto flex justify-center items-center font-poppins py-4">
-        <Card className="px-10 py-10 md:w-2/5 h-full flex flex-col justify-between">
+        <Card className="px-10 py-10 lg:w-2/5 h-full flex flex-col justify-between">
           <CardHeader>
             <CardTitle className="text-center text-2xl font-bold mb-4 text-aurora-purple">
               ¡Bienvenido al Medidor Aurora!
             </CardTitle>
-            <CardDescription className="md:text-center text-md">
+            <CardDescription className="lg:text-center text-md text-justify">
               Escala de integración del enfoque de género en proyectos
             </CardDescription>
           </CardHeader>

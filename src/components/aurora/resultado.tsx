@@ -17,8 +17,8 @@ type ResultProps = {
 const Resultado: React.FC<ResultProps> = ({ resultValue }) => {
   const categoria = resultValue < 0.33 ? 0 : resultValue < 0.66 ? 1 : 2;
   return (
-    <div className="w-full h-auto flex justify-center items-center font-poppins py-4">
-      <Card className="px-10 py-10 md:w-2/5 h-full flex flex-col justify-between">
+    <div className="w-full h-auto py-2 flex justify-center items-center font-poppins py-4 overflow-hidden">
+      <Card className="px-10 py-10 lg:w-2/5 h-full flex flex-col justify-between">
         <CardHeader>
           <CardTitle className="text-start text-2xl font-bold text-aurora-purple -mb-4">
             Resultado
