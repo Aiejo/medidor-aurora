@@ -32,7 +32,7 @@ const valores: { [key: number]: string } = {
 };
 
 const Cuestionario: React.FC = () => {
-  const [page, setPage] = React.useState(2);
+  const [page, setPage] = React.useState(0);
   const [result, setresult] = React.useState(0);
 
   const form = useForm<FormValues>({
