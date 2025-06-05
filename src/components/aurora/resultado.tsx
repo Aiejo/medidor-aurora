@@ -77,7 +77,7 @@ const Resultado: React.FC<ResultProps> = ({ resultValue }) => {
             <span className="text-white font-bold text-lg w-full flex justify-center">
               {OPCIONES_RESULTADO[categoria].titulo}
             </span>
-            <p className="bg-gray-200 rounded-xl px-4 py-6 text-sm mt-2">
+            <p className="bg-gray-200 rounded-xl px-8 py-6 text-sm mt-2 text-justify">
               {OPCIONES_RESULTADO[categoria].descripcion}
             </p>
           </div>
@@ -87,7 +87,7 @@ const Resultado: React.FC<ResultProps> = ({ resultValue }) => {
             <span className="text-aurora-purple text-lg font-bold mb-2 text-sm">
               Nota aclaratoria
             </span>
-            <p className="text-xs">
+            <p className="text-xs text-justify">
               Recuerda que esta encuesta responde a parámetros genéricos y
               abstractos que sirven para medir el enfoque de género en
               proyectos, por ello, no es un resultado definitivo, te

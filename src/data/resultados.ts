@@ -6,7 +6,7 @@ type opcion = {
 export const OPCIONES_RESULTADO: Array<opcion> = [
   {
     titulo: "Ciego al género",
-    descripcion: "¡No te preocupes! Aún estás a tiempo de incorporar el enfoque de género. Te recomendamos revisar la bibliografía adjunta que contiene instrumentos que te permitirán cumplir con la Ordenanza 03 de 2010 y el Decreto 3534 de 2010."
+    descripcion: "¡No te preocupes! Aún estás a tiempo de incorporar el enfoque de género. Te recomendamos revisar la bibliografía adjunta que contiene instrumentos que te permitirán cumplir con la Ordenanza 03 de 2010 y el Decreto 3435 de 2010."
   },
   {
     titulo: "Sensible al género",
