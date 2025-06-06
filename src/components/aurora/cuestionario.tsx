@@ -20,6 +20,8 @@ import { TOTAL_PREGUNTAS, CUESTIONARIO } from "@/data/cuestionario";
 import Inicio from "@/components/aurora/inicio";
 import Resultado from "@/components/aurora/resultado";
 
+const API_KEY = import.meta.env.VITE_JSONBIN_API_KEY;
+const COLLECTION_ID = import.meta.env.VITE_JSONBIN_COLLECTION_ID;
 
 type FormValues = {
   [name: string]: string;
@@ -44,20 +46,22 @@ const Cuestionario: React.FC = () => {
 
     const nombreBin = `Respuestas_${datetime}`;
 
-    const body = {...data, 'puntaje':finalResult}
+    const body = {...data, 'puntaje': (finalResult*100).toFixed(2), 'fecha': datetime};
 
     try {
       const response = await axios.post("https://api.jsonbin.io/v3/b", body, {
         headers: {
           "Content-Type": "application/json",
-          "X-Access-Key": import.meta.env.VITE_JSONBIN_API_KEY,
+          "X-Master-Key": API_KEY,
           "X-Bin-Name": nombreBin,
           "X-Bin-Private": "true",
-          "X-Collection-Id": import.meta.env.VITE_JSONBIN_COLLECTION_ID,
+          "X-Collection-Id": COLLECTION_ID,
         },
       });
 
-      console.log("Bin creado con ID:", response.data.metadata.id);
+      if(response.data.metadata.id){
+        console.log("Bin creado con ID:");
+      }
     } catch (error) {
       console.error("Error al guardar en JSONBin.io:", error);
     }

@@ -1,13 +1,18 @@
 import "./App.css";
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Cuestionario from "@/components/aurora/cuestionario";
+import Admin from "@/components/aurora/admin";
 
 const App: React.FC = () => {
   return (
-     <>
-      <Cuestionario/>
-    </>
+     <Router>
+      <Routes>
+        <Route path="/" element={<Cuestionario />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -12,6 +12,7 @@ type WelcomeMessageProps = {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
+
 const Inicio: React.FC<WelcomeMessageProps> = ({ onClick }) => {
   return (
       <div className="w-full h-auto flex justify-center items-center font-poppins py-4">
